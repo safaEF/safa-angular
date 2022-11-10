@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {User} from '../interfaces/user';
@@ -13,7 +13,7 @@ export class AuthService {
   }
 
   login(data): Observable<any> {
-    return this.http.post(`${environment.api}/authentification/login`, data);
+    return this.http.post(`${environment.api}/authentification/login/`, data);
   }
 
   register(data): Observable<User> {
@@ -21,15 +21,15 @@ export class AuthService {
   }
 
   user(): Observable<User> {
-    return this.http.get<User>(`${environment.api}/users`);
+    return this.http.get<User>(`${environment.api}/authentification/user/`, {headers: new HttpHeaders().set('Authorization', 'Token ffc57da7d6cc7e1bc61d8744d6118f196521ff23')});
   }
 
   logout(): Observable<void> {
     return this.http.post<void>(`${environment.api}/authentification/logout`, {});
-  } 
+  }
 
   updateInfo(data): Observable<User> {
-    return this.http.put<User>(`${environment.api}/users/`, data);
+    return this.http.put<User>(`${environment.api}/users/`, data, {headers: new HttpHeaders().set('Authorization', 'Token ffc57da7d6cc7e1bc61d8744d6118f196521ff23')});
   }
 
   updatePassword(data): Observable<User> {
