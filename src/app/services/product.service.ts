@@ -6,5 +6,5 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class ProductService extends RestService {
-  endpoint = `${environment.api}/product`;
+  endpoint = `${environment.api}/product/get`;
 }

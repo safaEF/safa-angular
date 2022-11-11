@@ -33,10 +33,10 @@ export class LoginComponent implements OnInit {
    this.authService.login(this.form.getRawValue())
 
 
-      .subscribe(() =>  {
+      .subscribe((res) =>  {
         // if login success do this
-
-        this.alert_success=true,
+        localStorage.setItem('token', res.key)
+        this.alert_success=true
         setTimeout(()=>this.router.navigate(['/']),500);
 
       },

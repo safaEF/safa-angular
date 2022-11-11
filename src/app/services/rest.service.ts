@@ -19,22 +19,22 @@ export abstract class RestService {
       url += `?page=${page}`;
     }
 
-    return this.http.get(url);
+    return this.http.get(url, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`).set('content-type', 'application/json')});
   }
 
   create(data): Observable<any> {
-    return this.http.post(this.endpoint+"/create", data, {headers: new HttpHeaders().set('Authorization', 'Token ffc57da7d6cc7e1bc61d8744d6118f196521ff23')});
+    return this.http.post(this.endpoint+"/create", data, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
   }
 
   get(id: number): Observable<any> {
-    return this.http.get(`${this.endpoint}/${id}`, {headers: new HttpHeaders().set('Authorization', 'Token ffc57da7d6cc7e1bc61d8744d6118f196521ff23')});
+    return this.http.get(`${this.endpoint}/${id}`, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
   }
 
   update(id: number, data): Observable<any> {
-    return this.http.put(`${this.endpoint}/${id}`, data, {headers: new HttpHeaders().set('Authorization', 'Token ffc57da7d6cc7e1bc61d8744d6118f196521ff23')});
+    return this.http.put(`${this.endpoint}/${id}`, data, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.endpoint}/${id}`, {headers: new HttpHeaders().set('Authorization', 'Token ffc57da7d6cc7e1bc61d8744d6118f196521ff23')});
+    return this.http.delete<void>(`${this.endpoint}/${id}`, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
   }
 }

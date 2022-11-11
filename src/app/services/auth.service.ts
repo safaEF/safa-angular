@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   logout(): Observable<void> {
-    return this.http.post<void>(`${environment.api}/authentification/logout`, {});
+    return this.http.post<void>(`${environment.api}/authentification/logout/`, {});
   }
 
   updateInfo(data): Observable<User> {

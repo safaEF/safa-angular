@@ -23,7 +23,10 @@ export class NavComponent implements OnInit {
   }
 
   logout(): void {
-    this.authService.logout().subscribe(() => {
+    this.authService.logout().subscribe((res) => {
+      console.log("res logout", res);
+
+      localStorage.clear()
     });
   }
 }
