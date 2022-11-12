@@ -36,8 +36,8 @@ export class OrdersComponent implements OnInit {
   load(page = 1): void {
     this.orderService.all().subscribe(
       res => {
-        this.orders = res.data;
-        this.lastPage = res.meta.last_page;
+        this.orders = res;
+        //this.lastPage = res.meta.last_page;
         this.show = true;
       }
     );

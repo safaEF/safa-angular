@@ -9,7 +9,7 @@ export abstract class RestService {
 
   abstract get endpoint(): string;
 
-  constructor(protected http: HttpClient) {
+  constructor(protected http: HttpClient ) {
   }
 
   all(page?: number): Observable<any> {
@@ -23,18 +23,18 @@ export abstract class RestService {
   }
 
   create(data): Observable<any> {
-    return this.http.post(this.endpoint+"/create", data, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
+    return this.http.post(this.endpoint+"/", data, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
   }
 
   get(id: number): Observable<any> {
-    return this.http.get(`${this.endpoint}/${id}`, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
+    return this.http.get(`${this.endpoint}${id}/`, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
   }
 
   update(id: number, data): Observable<any> {
-    return this.http.put(`${this.endpoint}/${id}`, data, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
+    return this.http.put(`${this.endpoint}${id}/`, data, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.endpoint}/${id}`, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
+    return this.http.delete<void>(`${this.endpoint}${id}/`, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
   }
 }

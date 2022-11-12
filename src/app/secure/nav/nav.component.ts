@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import {User} from '../../interfaces/user';
+
 
 @Component({
   selector: 'app-nav',
@@ -9,23 +9,29 @@ import {User} from '../../interfaces/user';
 })
 
 export class NavComponent implements OnInit {
-  user= {
-    first_name: '',
-    last_name: ''
+  
+  user = {
+    first_name:'',
+    last_name:''
   }
+
   constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
     this.authService.user().subscribe(
-      user => {this.user = user}
+      user => {
+       console.log("res", user);
+        
+        this.user = user
+      }
     );
   }
 
   logout(): void {
     this.authService.logout().subscribe((res) => {
       console.log("res logout", res);
-
+      
       localStorage.clear()
     });
   }

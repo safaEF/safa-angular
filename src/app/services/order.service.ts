@@ -7,13 +7,13 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class OrderService extends RestService {
-  endpoint = `${environment.api}/orders/orders`;
+  endpoint = `${environment.api}/order/get/`;
 
   export(): Observable<any> {
     return this.http.post(`${environment.api}/export`, {}, {responseType: 'blob'});
   }
 
   chart(): Observable<any> {
-    return this.http.get(`${environment.api}/orders/orders/chart`);
+    return this.http.get(`${environment.api}/chart`);
   }
 }

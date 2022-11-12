@@ -6,8 +6,9 @@
   <table class="table table-striped table-sm" matSort (matSortChange)="sortData($event)">
     <thead>
     <tr>
-      <th>#</th>
-      <th mat-sort-header="title">Title</th>
+      <th>id</th>
+      <th mat-sort-header="title">title</th>
+      <th mat-sort-header="image">image</th>
       <th mat-sort-header="price">Price</th>
       <th>Action</th>
     </tr>
@@ -15,8 +16,8 @@
     <tbody>
     <tr *ngFor="let product of products">
       <td>{{product.id}}</td>
-      <td><img [src]="product.image" height="50"/></td>
       <td>{{product.title}}</td>
+      <td><img [src]="product.image" height="50"/></td>
       <td>{{product.price}}</td>
       <td>
         <div class="btn-group mr-2">
@@ -30,7 +31,7 @@
     </tbody>
   </table>
 </div>
-<app-paginator
+<!-- <app-paginator
   [lastPage]="lastPage"
   (pageChanged)="load($event)"
-></app-paginator>
+></app-paginator> -->

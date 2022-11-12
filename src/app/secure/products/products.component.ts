@@ -10,7 +10,7 @@ import {Sort} from '@angular/material/sort';
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
-  lastPage: number;
+ /*  lastPage: number; */
   sortedData: Product[];
 
   constructor(private productService: ProductService) {
@@ -24,10 +24,8 @@ export class ProductsComponent implements OnInit {
   load(page = 1): void {
     this.productService.all().subscribe(
       res => {
-        console.log(res);
-
-        this.products = res.data;
-        this.lastPage = res.meta.last_page;
+        this.products = res;
+        //this.lastPage = res.meta.last_page;
       }
     );
   }

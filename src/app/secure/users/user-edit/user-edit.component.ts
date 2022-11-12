@@ -44,7 +44,7 @@ export class UserEditComponent implements OnInit {
           first_name: user.first_name,
           last_name: user.last_name,
           email: user.email,
-          role_id: user.role.id
+          username: user.username,
         });
       }
     );
