@@ -11,9 +11,10 @@ import {AuthService} from '../../services/auth.service';
 export class RegisterComponent implements OnInit {
   firstName = '';
   lastName = '';
+  username = '';
   email = '';
-  password = '';
-  passwordConfirm = '';
+  password1 = '';
+  password2 = '';
 
   constructor(
     private router: Router,
@@ -28,13 +29,17 @@ export class RegisterComponent implements OnInit {
     this.authService.register({
       first_name: this.firstName,
       last_name: this.lastName,
+      username: this.username,
       email: this.email,
-      password: this.password,
-      password_confirm: this.passwordConfirm,
+      password1: this.password1,
+      password2: this.password2,
+      is_staff: 0,
+      is_superuser: 0,
+      groups: null,
       /* role: 1 */
     }).subscribe(() => this.router.navigate(['/login']))
-    
-     
+
+
   }
 
 }

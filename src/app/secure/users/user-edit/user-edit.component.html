@@ -8,6 +8,10 @@
     <input class="form-control" name="last_name" formControlName="last_name">
   </div>
   <div class="mb-3">
+    <label>Username</label>
+    <input class="form-control" name="username" formControlName="username">
+  </div>
+  <div class="mb-3">
     <label>Email</label>
     <input class="form-control" name="email" formControlName="email">
   </div>
@@ -15,7 +19,7 @@
   <div class="mb-3">
     <label>Role</label>
     <select name="role_id" class="form-control" formControlName="role_id">
-      
+
       <option *ngFor="let role of roles" [ngValue]="role.id">
         {{role.name}}
       </option>

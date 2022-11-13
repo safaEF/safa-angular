@@ -4,24 +4,15 @@
 
     <input [(ngModel)]="firstName" name="first_name" class="form-control" placeholder="First Name" required>
 
-    <input [(ngModel)]="lastName" name="last_name" class="form-control" placeholder="Last Name" required>
+    <input [(ngModel)]="lastName" name="last_name" class="form-control mt-2" placeholder="Last Name" required>
 
-    <input [(ngModel)]="email" name="email" type="email" class="form-control" placeholder="Email address" required>
+    <input [(ngModel)]="username" name="username" type="username" class="form-control mt-2" placeholder="Username" required>
 
-    <input [(ngModel)]="password" name="password" type="password" class="form-control" placeholder="Password" required>
+    <input [(ngModel)]="email" name="email" type="email" class="form-control mt-2" placeholder="Email address" required>
 
-    <input [(ngModel)]="passwordConfirm" name="password_confirm" type="password" class="form-control" placeholder="Password Confirm" required>
-    
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Roles
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="">Admin</a></li>
-        <li><a class="dropdown-item" href="#">Patient</a></li>
-        <li><a class="dropdown-item" href="#">Medecin</a></li>
-      </ul>
-    </div>
+    <input [(ngModel)]="password1" name="password1" type="password" class="form-control mt-2" placeholder="Password" required>
+
+    <input [(ngModel)]="password2" name="password2" type="password" class="form-control" placeholder="Password Confirm" required>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
   </form>

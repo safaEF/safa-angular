@@ -6,5 +6,5 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class PermissionService extends RestService {
-  endpoint = `${environment.api}/permissions`;
+  endpoint = `${environment.api}/permissions/`;
 }
