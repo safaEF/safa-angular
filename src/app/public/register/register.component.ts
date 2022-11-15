@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
   email = '';
   password1 = '';
   password2 = '';
+  alert_success: boolean=false
+  alert_danger: boolean=false
 
   constructor(
     private router: Router,
@@ -36,10 +38,31 @@ export class RegisterComponent implements OnInit {
       is_staff: 0,
       is_superuser: 0,
       groups: null,
-      /* role: 1 */
-    }).subscribe(() => this.router.navigate(['/login']))
+      
 
+    })
 
+    .subscribe(() =>  {
+      // if login success do this
+      this.alert_success=true
+      setTimeout(()=>this.router.navigate(['/login']),500);
+
+    },
+
+    // else do this
+    (error) => {
+      this.alert_danger=true
+    });
+
+  }
+
+  closeAlert()
+  {
+   this.alert_success=false
+  }
+  closeAlertDanger()
+  {
+   this.alert_danger=false
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from 'src/app/classes/auth';
 
 @Component({
   selector: 'app-menu',
@@ -12,4 +13,7 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+ canAccess(permissions){
+  return Auth.canAccess(permissions);
+ }
 }

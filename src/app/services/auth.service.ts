@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   user(): Observable<User> {
-    return this.http.get<User>(`${environment.api}/authentification/user/`,  {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
+    return this.http.get<User>(`${environment.api}/authentification/user/`,  {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("token")}`)});
   }
 
   logout(): Observable<void> {
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   updateInfo(data): Observable<User> {
-    return this.http.put<User>(`${environment.api}/users/`, data, {headers: new HttpHeaders().set('Authorization', `Token ${localStorage.getItem("token")}`)});
+    return this.http.put<User>(`${environment.api}/users/`, data);
   }
 
   updatePassword(data): Observable<User> {

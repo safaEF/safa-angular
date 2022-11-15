@@ -1,5 +1,18 @@
-<main class="form-signin">
-  <form (submit)="submit()">
+<main >
+    <div *ngIf="alert_success" class="alert alert-success alert-dismissible mt-4" role="alert">
+      <strong> success signin </strong> Your data has been entered successfully!
+        <button (click)="closeAlert()" type="button"  data-dismiss="alert">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div *ngIf="alert_danger" class="alert alert-danger alert-dismissible mt-4" role="alert">
+      <strong> error signin </strong> please verify your informations!
+        <button (click)="closeAlertDanger()" type="button"  data-dismiss="alert">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+  <form (submit)="submit()" class="form-signin">
     <h1 class="h3 mb-3 fw-normal">Please register</h1>
 
     <input [(ngModel)]="firstName" name="first_name" class="form-control" placeholder="First Name" required>
@@ -14,6 +27,17 @@
 
     <input [(ngModel)]="password2" name="password2" type="password" class="form-control" placeholder="Password Confirm" required>
 
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+    
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>    
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </ul>
+    </div>
   </form>
 </main>

@@ -24,7 +24,8 @@ export class ProfileComponent implements OnInit {
     this.infoForm = this.formBuilder.group({
       first_name: user.first_name,
       last_name: user.last_name,
-      email: user.email
+      email: user.email,
+      role: user.role
       
     });
 

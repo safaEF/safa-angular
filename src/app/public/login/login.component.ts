@@ -35,7 +35,9 @@ export class LoginComponent implements OnInit {
 
       .subscribe((res) =>  {
         // if login success do this
-        localStorage.setItem('token', res.key)
+        console.log("res",res);
+        
+        localStorage.setItem('token', res.access_token)
         this.alert_success=true
         setTimeout(()=>this.router.navigate(['/']),500);
 
