@@ -10,7 +10,7 @@ import {User} from '../interfaces/user';
   styleUrls: ['./secure.component.css']
 })
 export class SecureComponent implements OnInit {
-  user: User;
+  public user: User;
 
   constructor(
     private authService: AuthService,

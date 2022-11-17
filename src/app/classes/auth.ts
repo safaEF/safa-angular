@@ -13,11 +13,11 @@ export class Auth {
     return this._user
   }
   
-  static canAccess(permissions) {
-    if (!this._user){
-      return false ; 
-    }
-    return this._user.permission.filter(p => permissions.indexOf(p) !== -1 ).length > 0 ; 
-  }
+  // static canAccess(permission) {
+  //   if (!this._user){
+  //     return false ; 
+  //   }
+  //   return this._user.permission.filter(p => permission.indexOf(p) !== -1 ).length > 0 ; 
+  // }
 
 }

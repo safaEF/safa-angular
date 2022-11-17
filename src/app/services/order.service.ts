@@ -14,6 +14,6 @@ export class OrderService extends RestService {
   }
 
   chart(): Observable<any> {
-    return this.http.get(`${environment.api}/chart/`);
+    return this.http.get(`${environment.api}/chart`);
   }
 }

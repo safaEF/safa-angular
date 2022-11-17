@@ -18,21 +18,23 @@ export class NavComponent implements OnInit {
   constructor(private authService: AuthService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.authService.user().subscribe(
       user => {
        console.log("res", user);
-        
         this.user = user
       }
     );
   }
 
-  logout(): void {
-    this.authService.logout().subscribe((res) => {
-      console.log("res logout", res);
+  // logout(): void {
+  //   this.authService.logout().subscribe((res) => {
+  //     console.log("res logout", res);
       
-      localStorage.clear()
-    });
+  //     localStorage.clear()
+  //   });
+  // }
+  logout() {
+    this.authService.logout();
   }
 }

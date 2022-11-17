@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,8 @@ export class LoginComponent implements OnInit {
   alert_success: boolean=false
   alert_danger: boolean=false
   form: FormGroup;
+  http: HttpClient;
+  access_token : null
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,16 +33,21 @@ export class LoginComponent implements OnInit {
   }
 
    submit(): void {
+
    this.authService.login(this.form.getRawValue())
-
-
-      .subscribe((res) =>  {
+     .subscribe((res) =>  {
         // if login success do this
-        console.log("res",res);
-        
-        localStorage.setItem('token', res.access_token)
         this.alert_success=true
-        setTimeout(()=>this.router.navigate(['/']),500);
+
+
+        this.authService.token(this.form.getRawValue())
+        .subscribe((res) => {
+          localStorage.setItem('access_token', res.access)
+          localStorage.setItem('refresh_token', res.refresh)
+          setTimeout(()=>this.router.navigate(['/']),500);
+          
+        })
+       
 
       },
 
@@ -48,7 +56,8 @@ export class LoginComponent implements OnInit {
         this.alert_danger=true
       });
       // empty sign in form
-      this.form.reset({})
+      //this.form.reset({})
+
 
     }
      // end of function

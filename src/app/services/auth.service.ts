@@ -16,12 +16,20 @@ export class AuthService {
     return this.http.post(`${environment.api}/authentification/login/`, data);
   }
 
+  token(data): Observable<any> {
+    return this.http.post(`${environment.api}/token/`, data);
+  }
+
+  refresh(data): Observable<any> {
+    return this.http.post(`${environment.api}/token/refresh/`, data);
+  }
+
   register(data): Observable<User> {
     return this.http.post<User>(`${environment.api}/authentification/registration/`, data);
   }
 
   user(): Observable<User> {
-    return this.http.get<User>(`${environment.api}/authentification/user/`,  {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("token")}`)});
+    return this.http.get<User>(`${environment.api}/authentification/user/`,  {headers: new HttpHeaders().set('Authorization', `JWT ${localStorage.getItem("access_token")}`)});
   }
 
   logout(): Observable<void> {
@@ -35,5 +43,6 @@ export class AuthService {
   updatePassword(data): Observable<User> {
     return this.http.put<User>(`${environment.api}/authentification/password/reset/`, data);
   }
+
 
 }
