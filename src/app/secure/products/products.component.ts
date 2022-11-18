@@ -23,12 +23,16 @@ export class ProductsComponent implements OnInit {
 
   load(page = 1): void {
     this.productService.all().subscribe(
-      res => {
+      (res) => {
         this.products = res;
+        console.log("done");
+
         //this.lastPage = res.meta.last_page;
+      },
+      err =>  {
+        console.log('erreur : ', err);
       }
-    );
-  }
+      )}
 
   delete(id: number): void {
     if (confirm('Are you sure you want to delete this record?')) {

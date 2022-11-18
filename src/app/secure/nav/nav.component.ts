@@ -9,7 +9,7 @@ import {AuthService} from '../../services/auth.service';
 })
 
 export class NavComponent implements OnInit {
-  
+
   user = {
     first_name:'',
     last_name:''
@@ -20,17 +20,20 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.authService.user().subscribe(
-      user => {
+      (user) => {
        console.log("res", user);
         this.user = user
       }
-    );
+    ), err =>{
+      console.log("error : ", err);
+
+    }
   }
 
   // logout(): void {
   //   this.authService.logout().subscribe((res) => {
   //     console.log("res logout", res);
-      
+
   //     localStorage.clear()
   //   });
   // }

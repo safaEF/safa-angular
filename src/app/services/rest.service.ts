@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json',
-  'Authorization': `JWT ${localStorage.getItem("access_token")}`
+  'Authorization': `Bearer ${localStorage.getItem("access_token")}`
 });
 
 const requestOptions = { headers: headers };

@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   alert_danger: boolean=false
   form: FormGroup;
   http: HttpClient;
-  access_token : null
+  jwt : null
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,18 +36,10 @@ export class LoginComponent implements OnInit {
 
    this.authService.login(this.form.getRawValue())
      .subscribe((res) =>  {
-        // if login success do this
         this.alert_success=true
-
-
-        this.authService.token(this.form.getRawValue())
-        .subscribe((res) => {
-          localStorage.setItem('access_token', res.access)
-          localStorage.setItem('refresh_token', res.refresh)
-          setTimeout(()=>this.router.navigate(['/']),500);
-          
-        })
-       
+        localStorage.setItem('access_token', res.access)
+        localStorage.setItem('refresh_token', res.refresh)
+        setTimeout(()=>this.router.navigate(['/']),500);
 
       },
 
