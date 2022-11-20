@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Order} from '../../interfaces/order';
 import {OrderService} from '../../services/order.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {AuthService} from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
@@ -26,7 +28,9 @@ export class OrdersComponent implements OnInit {
   selected: number;
   show = false;
 
-  constructor(private orderService: OrderService) {
+  constructor(private authService: AuthService,
+    private router: Router,
+    private orderService: OrderService) {
   }
 
   ngOnInit(): void {
@@ -39,6 +43,17 @@ export class OrdersComponent implements OnInit {
         this.orders = res;
         //this.lastPage = res.meta.last_page;
         this.show = true;
+      },
+      error => {
+         if (error.status == 401) {
+            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+              localStorage.setItem('access_token', res.access),
+              this.orderService.all().subscribe((res) => {
+                this.orders = res
+              },
+              )
+            },error=> {  this.router.navigate(['/login'])  })
+        }
       }
     );
   }

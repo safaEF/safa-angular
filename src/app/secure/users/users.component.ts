@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {User} from '../../interfaces/user';
 import {Sort} from '@angular/material/sort';
+import {AuthService} from '../../services/auth.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-users',
@@ -15,16 +18,28 @@ export class UsersComponent implements OnInit {
   lastPage: number;
   sortedData: User[];
 
-  constructor(private userService: UserService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private userService: UserService) {
     this.sortedData = this.users.slice();
   }
 
   ngOnInit(): void {
     this.userService.all().subscribe(
-      users => {
-        this.users = users
-        console.log('users : ', this.users);
-        
+      res => {
+        this.users = res
+      },
+      error => {
+         if (error.status == 401) {
+            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+              localStorage.setItem('access_token', res.access),
+              this.userService.all().subscribe((res) => {
+                this.users = res
+              },
+              )
+            },error=> {  this.router.navigate(['/login'])  })
+        }
       }
     );
   }

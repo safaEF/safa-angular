@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../../interfaces/product';
 import {ProductService} from '../../services/product.service';
 import {Sort} from '@angular/material/sort';
+import {AuthService} from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -13,7 +15,10 @@ export class ProductsComponent implements OnInit {
  /*  lastPage: number; */
   sortedData: Product[];
 
-  constructor(private productService: ProductService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private productService: ProductService) {
     this.sortedData = this.products.slice();
   }
 
@@ -25,12 +30,17 @@ export class ProductsComponent implements OnInit {
     this.productService.all().subscribe(
       (res) => {
         this.products = res;
-        console.log("done");
-
-        //this.lastPage = res.meta.last_page;
       },
-      err =>  {
-        console.log('erreur : ', err);
+      error => {
+         if (error.status == 401) {
+            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+              localStorage.setItem('access_token', res.access),
+              this.productService.all().subscribe((res) => {
+                this.products = res
+              },
+              )
+            },error=> {  this.router.navigate(['/login'])  })
+        }
       }
       )}
 

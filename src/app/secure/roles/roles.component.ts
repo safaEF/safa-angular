@@ -3,6 +3,9 @@ import {RoleService} from '../../services/role.service';
 import {Role} from '../../interfaces/role';
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from '@angular/material/table';
+import {AuthService} from '../../services/auth.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -17,7 +20,9 @@ export class RolesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'row'];
   dataSource!:MatTableDataSource<any>;
 
-  constructor(private roleService: RoleService) {
+  constructor(private authService: AuthService,
+    private router: Router,
+    private roleService: RoleService) {
   }
 
 
@@ -32,11 +37,22 @@ export class RolesComponent implements OnInit {
   ngOnInit(): void {
     this.roleService.all().subscribe(
        res => {
-        
+
         this.roles = res;
          this.dataSource = new MatTableDataSource(this.roles);
          this.dataSource.sort = this.sort;
-       }
+       },
+      error => {
+         if (error.status == 401) {
+            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+              localStorage.setItem('access_token', res.access),
+              this.roleService.all().subscribe((res) => {
+                this.roles = res
+              },
+              )
+            },error=> {  this.router.navigate(['/login'])  })
+        }
+      }
      );
   }
 

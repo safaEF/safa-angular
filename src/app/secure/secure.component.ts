@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
-import {Auth} from '../classes/auth';
 import {User} from '../interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-secure',
@@ -14,32 +14,27 @@ export class SecureComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private router: Router
   ) {
   }
 
 
   ngOnInit(): void {
     this.authService.user().subscribe(
-      user => {
-        Auth.userEmitter.emit(user);
-        Auth.user = user;
-        this.user = user;
+      res => {
+        this.user = res;
       },
-      error => {
-        if (error.error.code == "token_not_valid") {
-
-          this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
-            localStorage.setItem('access_token', res.access)
-
-          },error2=> { console.log("error 2 : ", error2);
-          })
-
-        } else {
-
+       error => {
+          if (error.status == 401) {
+            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+              localStorage.setItem('access_token', res.access),
+              this.authService.user().subscribe((res) => {
+                this.user = res
+              })
+            },error=> {  this.router.navigate(['/login'])  })
         }
-
       }
-      //() => this.router.navigate(['/authentification/login'])
+
     );
   }
 

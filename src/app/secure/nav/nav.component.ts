@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -15,19 +15,28 @@ export class NavComponent implements OnInit {
     last_name:''
   }
 
-  constructor(private authService: AuthService) {
+  constructor(private router: Router,
+    private authService: AuthService) {
   }
 
   ngOnInit() {
-    this.authService.user().subscribe(
+     this.authService.user().subscribe(
       (user) => {
        console.log("res", user);
         this.user = user
+      },
+      error => {
+         if (error.status == 401) {
+            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+              localStorage.setItem('access_token', res.access),
+              this.authService.user().subscribe((res) => {
+                this.user = res
+              },
+              )
+            },error=> {  this.router.navigate(['/login'])  })
+        }
       }
-    ), err =>{
-      console.log("error : ", err);
-
-    }
+    )
   }
 
   // logout(): void {

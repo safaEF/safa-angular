@@ -2,12 +2,13 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-const headers = new HttpHeaders({
+
+let headers = new HttpHeaders({
   'Content-Type': 'application/json',
   'Authorization': `Bearer ${localStorage.getItem("access_token")}`
 });
 
-const requestOptions = { headers: headers };
+let requestOptions = { headers: headers };
 
 @Injectable({
   providedIn: 'root'
@@ -21,19 +22,19 @@ export abstract class RestService {
 
   all(): Observable<any> {
     let url = this.endpoint;
-    return this.http.get(url+"get/", requestOptions);
+    return this.http.get(url+"get/", {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("access_token")}`)});
   }
 
   create(data): Observable<any> {
-    return this.http.post(this.endpoint+"create/", data, requestOptions);
+    return this.http.post(this.endpoint+"create/", data, {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("access_token")}`)});
   }
 
   get(id: number): Observable<any> {
-    return this.http.get(`${this.endpoint}get/${id}/`, requestOptions);
+    return this.http.get(`${this.endpoint}get/${id}/`, {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("access_token")}`)});
   }
 
   update(id: number, data): Observable<any> {
-    return this.http.put(`${this.endpoint}change/${id}/`, data , requestOptions );
+    return this.http.put(`${this.endpoint}change/${id}/`, data , {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("access_token")}`)} );
   }
 
   delete(id: number): Observable<void> {
