@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 
 export class RolesComponent implements OnInit {
   roles : Role[] = [];
+  id: number;
 
   displayedColumns: string[] = ['id', 'name', 'row'];
   dataSource!:MatTableDataSource<any>;
@@ -29,7 +30,19 @@ export class RolesComponent implements OnInit {
  delete(id: number): void {
      if (confirm('Are you sure you want to delete this record?')) {
        this.roleService.delete(id).subscribe(
-         () => this.roles = this.roles.filter(r => r.id !== id)
+         () => this.roles = this.roles.filter(r => r.id !== id),
+        
+         error => {
+            if (error.status == 401) {
+               this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+                 localStorage.setItem('access_token', res.access),
+                 this.roleService.delete(this.id).subscribe(() => {
+                  this.roles = this.roles.filter(r => r.id !== id)
+                 },
+                 )
+               },error=> {  this.router.navigate(['/login'])  })
+           }
+         }
        );
      }
    }

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProductService} from '../../../services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
+
 
 @Component({
   selector: 'app-product-edit',
@@ -16,7 +18,8 @@ export class ProductEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private productService: ProductService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {
   }
 
@@ -37,6 +40,16 @@ export class ProductEditComponent implements OnInit {
 
   submit(): void {
     this.productService.update(this.id, this.form.getRawValue())
-      .subscribe(() => this.router.navigate(['/products']));
+      .subscribe(() => this.router.navigate(['/products']),
+      
+      error => {
+         if (error.status == 401) {
+            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+              localStorage.setItem('access_token', res.access),
+              this.productService.update(this.id, this.form.getRawValue()).subscribe(() => this.router.navigate(['/products']),
+              )
+            },error=> {  this.router.navigate(['/login'])  })
+        }
+      });
   }
 }

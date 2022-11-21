@@ -38,6 +38,6 @@ export abstract class RestService {
   }
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.endpoint}delete/${id}/`);
+    return this.http.delete<void>(`${this.endpoint}delete/${id}/` , {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("access_token")}`)});
   }
 }

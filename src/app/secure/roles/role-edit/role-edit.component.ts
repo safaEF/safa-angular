@@ -5,6 +5,8 @@ import {PermissionService} from '../../../services/permission.service';
 import {RoleService} from '../../../services/role.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Role} from '../../../interfaces/role';
+import {AuthService} from '../../../services/auth.service';
+
 
 @Component({
   selector: 'app-role-edit',
@@ -21,6 +23,7 @@ export class RoleEditComponent implements OnInit {
     private permissionService: PermissionService,
     private roleService: RoleService,
     private router: Router,
+    private authService: AuthService,
     private route: ActivatedRoute
   ) {
   }
@@ -88,7 +91,17 @@ export class RoleEditComponent implements OnInit {
     };
 
     this.roleService.update(this.id, data)
-      .subscribe(() => this.router.navigate(['/roles']));
+      .subscribe(() => this.router.navigate(['/roles']),
+      
+      error => {
+         if (error.status == 401) {
+            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+              localStorage.setItem('access_token', res.access),
+              this.roleService.update(this.id, data).subscribe(() => this.router.navigate(['/roles']),
+              )
+            },error=> {  this.router.navigate(['/login'])  })
+        }
+      });
   }
 
 }

@@ -4,6 +4,8 @@ import {Permission} from '../../../interfaces/permission';
 import {PermissionService} from '../../../services/permission.service';
 import {RoleService} from '../../../services/role.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
+
 
 @Component({
   selector: 'app-role-create',
@@ -18,6 +20,7 @@ export class RoleCreateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private permissionService: PermissionService,
     private roleService: RoleService,
+    private authService: AuthService,
     private router: Router
   ) {
   }
@@ -60,7 +63,17 @@ export class RoleCreateComponent implements OnInit {
 
 
     this.roleService.create(data)
-      .subscribe(() => this.router.navigate(['/roles']));
+      .subscribe(() => this.router.navigate(['/roles']),
+      
+      error => {
+         if (error.status == 401) {
+            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+              localStorage.setItem('access_token', res.access),
+              this.roleService.create(data).subscribe(() => this.router.navigate(['/roles']),
+              )
+            },error=> {this.router.navigate(['/login'])})
+        }
+      });
   }
 
 }

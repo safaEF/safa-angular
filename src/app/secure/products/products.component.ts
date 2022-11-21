@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
+  id: number;
  /*  lastPage: number; */
   sortedData: Product[];
 
@@ -47,7 +48,19 @@ export class ProductsComponent implements OnInit {
   delete(id: number): void {
     if (confirm('Are you sure you want to delete this record?')) {
       this.productService.delete(id)
-        .subscribe(() => this.products = this.products.filter(p => p.id !== id));
+        .subscribe(() => this.products = this.products.filter(p => p.id !== id),
+        
+      error => {
+         if (error.status == 401) {
+            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+              localStorage.setItem('access_token', res.access),
+              this.productService.delete(this.id).subscribe(() => {
+                this.products = this.products.filter(p => p.id !== id)
+              },
+              )
+            },error=> {  this.router.navigate(['/login'])  })
+        }
+      });
     }
   }
   sortData(sort: Sort) {
