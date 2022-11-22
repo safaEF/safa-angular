@@ -11,6 +11,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import {MatSortModule} from '@angular/material/sort';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CredentialInterceptor,
-      multi: true
+      multi: true,
+
     }
   ],
   bootstrap: [AppComponent]

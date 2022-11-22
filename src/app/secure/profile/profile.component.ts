@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Auth} from '../../classes/auth';
+import {Permission} from '../../interfaces/permission';
 
 
 @Component({
@@ -12,6 +13,7 @@ import {Auth} from '../../classes/auth';
 export class ProfileComponent implements OnInit {
   infoForm: FormGroup;
   passwordForm: FormGroup;
+  permissions: Permission[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,7 +27,8 @@ export class ProfileComponent implements OnInit {
       first_name: user.first_name,
       last_name: user.last_name,
       email: user.email,
-      role: user.role
+      role: user.role,
+      permission: user.permission,
       
     });
 
