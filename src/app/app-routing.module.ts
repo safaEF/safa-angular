@@ -16,7 +16,8 @@ import { ProductsComponent} from './secure/products/products.component';
 import {ProductCreateComponent} from './secure/products/product-create/product-create.component';
 import {ProductEditComponent} from './secure/products/product-edit/product-edit.component';
 import {OrdersComponent} from './secure/orders/orders.component';
-import { permission } from './classes/permission';
+import { Permission } from './classes/permission';
+
 
 
 const routes: Routes = [
@@ -36,8 +37,9 @@ const routes: Routes = [
       {
         path: 'products', 
         component: ProductsComponent,
-        canActivate: [permission],
-        data: ['product.view_product', 'product.change_product']
+        canActivate: [Permission],
+        data: ['view_product', 'edit_product']
+        
       },
       {path: 'products/create', component: ProductCreateComponent},
       {path: 'products/:id/edit', component: ProductEditComponent},
@@ -58,7 +60,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [permission],
+  providers: [Permission]
 })
 export class AppRoutingModule {
 }

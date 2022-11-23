@@ -56,7 +56,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         MatSortModule,
         MatTableModule,
         MatPaginatorModule
-    ]
+    ],
+    
 })
 export class SecureModule {
 }

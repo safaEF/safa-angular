@@ -1,4 +1,4 @@
-import { Permission } from './permission';
+import { Permission } from '../interfaces/permission';
 import {Role} from './role';
 
 export interface User {

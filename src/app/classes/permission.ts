@@ -2,16 +2,12 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } fro
 import { Observable } from "rxjs";
 import { Auth } from "./auth";
 
-export class permission implements CanActivate{
-    canActivate(
-        route: ActivatedRouteSnapshot, 
-        _state: RouterStateSnapshot
-    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree  {
-    //    return Auth.canAccess(route.data);
-    console.log('permission:', route, _state);
-    return Auth.canAccess(route.data);
+export class Permission implements CanActivate{
+    constructor() {}
 
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+        // return Auth.canAccess(route.data);
+        return true;
+        
     }
-
 }
- 
