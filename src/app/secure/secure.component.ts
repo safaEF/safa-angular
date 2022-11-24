@@ -23,8 +23,11 @@ export class SecureComponent implements OnInit {
   ngOnInit(): void {
     this.authService.user().subscribe(
       res => {
+        // Auth.canAccess()
         Auth.userEmitter.emit(res);
         this.user = res;
+        // console.log(res);
+        
       },
        error => {
           if (error.status == 401) {

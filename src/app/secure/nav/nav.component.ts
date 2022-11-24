@@ -24,8 +24,12 @@ export class NavComponent implements OnInit {
     // Auth.userEmitter.subscribe((res))
      this.authService.user().subscribe(
       (user) => {
-       console.log("res", user);
+        // Auth.canAccess()
+        Auth.userEmitter.subscribe(user)
+       console.log("data", user);
         this.user = user
+      
+     
       },
       error => {
          if (error.status == 401) {
@@ -48,7 +52,13 @@ export class NavComponent implements OnInit {
   //     localStorage.clear()
   //   });
   // }
+
+  canAccess(){
+    return Auth.canAccess()
+}
+
   logout() {
     this.authService.logout();
   }
+  
 }

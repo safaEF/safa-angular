@@ -25,13 +25,12 @@ export class Auth {
 
  static canAccess(){
 
-
   if (!this._user) {
-    console.log("log from auth.ts : ");
+    console.log("log from auth.ts 0: ");
 
     return false
   } else {
-    console.log("log from auth.ts : ");
+    console.log("log from auth.ts 1: ");
 
   }
 /*   this.permissionService.all().subscribe(data =>
@@ -47,10 +46,12 @@ export class Auth {
 
     })
  */
-   if(!Auth._user){
 
-     return false;
-   }
+
+  //  if(!Auth._user){
+
+  //    return false;
+  //  }
 
 }
 

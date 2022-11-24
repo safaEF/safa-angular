@@ -12,5 +12,4 @@ export interface User {
   permissions: Permission[];
   groups_list: Role[];
   permissions_list: Permission[];
-  //type_name : string;
 }
