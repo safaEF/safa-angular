@@ -19,9 +19,9 @@ import { ProductCreateComponent } from './products/product-create/product-create
 import { UploadComponent } from './components/upload/upload.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { OrdersComponent } from './orders/orders.component';
-import {MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -53,9 +53,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
-        MatSortModule,
         MatTableModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        Ng2SearchPipeModule,
     ],
     
 })

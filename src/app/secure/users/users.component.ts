@@ -6,6 +6,7 @@ import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -18,7 +19,10 @@ export class UsersComponent implements OnInit {
   id: number;
   lastPage: number;
   sortedData: User[];
+  searchText;
+  title = 'Search name';
 
+  
   constructor(
     private authService: AuthService,
     private router: Router,

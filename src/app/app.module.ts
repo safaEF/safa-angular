@@ -9,7 +9,7 @@ import {CredentialInterceptor} from './interceptors/credential.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatTableModule} from '@angular/material/table';
-import {MatSortModule} from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -26,7 +26,9 @@ import {MatSortModule} from '@angular/material/sort';
     BrowserAnimationsModule,
     NgbModule,
     MatTableModule,
-    MatSortModule
+    MatSelectModule,
+   
+    
   ],
   providers: [
     {

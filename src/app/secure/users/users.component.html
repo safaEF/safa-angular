@@ -1,8 +1,11 @@
 <div class="pt-3 pb-2 mb-3 border-bottom">
   <a routerLink="/users/create" class="btn btn-sm btn-outline-secondary">Add</a>
-</div>
 
-<div class="table-responsive">
+  <div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText"  placeholder="&#61442;  Start searching by id or name">
+  </div>
+
+</div>
   <table class="table table-striped table-sm" matSort (matSortChange)="sortData($event)">
     <thead>
     <tr>
@@ -14,11 +17,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{user.id}}</td>
-      <td>{{user.first_name}} {{user.last_name}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.groups}}</td>
+    <tr *ngFor="let user of users | filter:searchText">
+        <td>{{user.id}}</td>
+        <td>{{user.first_name}} {{user.last_name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.groups}}</td>
       
       <td>
         <div class="btn-group mr-2">
@@ -30,6 +33,6 @@
     </tbody>
   </table>
  <!-- <app-paginator [lastPage]="lastPage"  (pageChanged)="load($event)" >  </app-paginator> -->
-</div>
+
 
 

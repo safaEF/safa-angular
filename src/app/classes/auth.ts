@@ -33,26 +33,17 @@ export class Auth {
     console.log("log from auth.ts 1: ");
 
   }
-/*   this.permissionService.all().subscribe(data =>
+  //  this.permissionService.all().subscribe(data => data.filter(p => permission.indexOf(p) !== -1 ).length > 0 ) ;
+  //   console.log(); 
 
-    data.filter(p => permission.indexOf(p) !== -1 ).length > 0 ) ;
-    console.log(); */
-/*
-    this.authService.user().subscribe((res) => {
-      console.log("res from user : ", res);
-      var group = res
-      console.log("group : ", group.id);
+  //   this.authService.user().subscribe((res) => {
+  //     console.log("res from user : ", res);
+  //     var group = res
+  //     console.log("group : ", group.id);
 
 
-    })
- */
-
-
-  //  if(!Auth._user){
-
-  //    return false;
-  //  }
-
+  //   })
+ 
 }
 
 }
