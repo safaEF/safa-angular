@@ -37,8 +37,8 @@ const routes: Routes = [
       {
         path: 'products', 
         component: ProductsComponent,
-        canActivate: [Permission],
-        data: ['view_product', 'edit_product']
+        // canActivate: [Permission],
+        // data: ['view_product', 'edit_product']
         
       },
       {path: 'products/create', component: ProductCreateComponent},
@@ -60,7 +60,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [Permission]
+  providers: [Permission],
 })
 export class AppRoutingModule {
 }

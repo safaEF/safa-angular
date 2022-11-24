@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { Auth } from 'src/app/classes/auth';
 
 @Component({
   selector: 'app-nav',
@@ -20,6 +21,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Auth.userEmitter.subscribe((res))
      this.authService.user().subscribe(
       (user) => {
        console.log("res", user);

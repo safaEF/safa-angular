@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {User} from '../interfaces/user';
 import { Router } from '@angular/router';
+import { Auth } from '../classes/auth';
 
 @Component({
   selector: 'app-secure',
@@ -22,6 +23,7 @@ export class SecureComponent implements OnInit {
   ngOnInit(): void {
     this.authService.user().subscribe(
       res => {
+        Auth.userEmitter.emit(res);
         this.user = res;
       },
        error => {
