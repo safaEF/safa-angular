@@ -32,6 +32,8 @@ export class SecureComponent implements OnInit {
               localStorage.setItem('access_token', res.access),
               this.authService.user().subscribe((res) => {
                 this.user = res
+                console.log("user : ", this.user);
+
               })
             },error=> {  this.router.navigate(['/login'])  })
         }

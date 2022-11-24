@@ -37,10 +37,10 @@
 //     this.permissionService.all().subscribe(
 //       permissions => {
 //         // console.log(permissions);
-        
+
 //         this.permissions = permissions;
 //         console.log(this.permissions);  ///permissions list
-        
+
 //         this.permissions.forEach(p => {
 //           this.permissionArray.push(
 //             this.formBuilder.group({
@@ -57,16 +57,16 @@
 //     this.roleService.get(this.id).subscribe(
 //       (role: Role) => {
 //         console.log(role);
-        
+
 //         const values = this.permissions.map(
 //           p => {
-            
+
 //             console.log("p",p.id === role.permissions[0]);
-            
+
 //             return {
 //               value: role.permissions?.some(r => r === p.id),
 //               id: p.id
-              
+
 //             };
 //           }
 //         );
@@ -92,7 +92,7 @@
 
 //     this.roleService.update(this.id, data)
 //       .subscribe(() => this.router.navigate(['/roles']),
-      
+
 //       error => {
 //          if (error.status == 401) {
 //             this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
@@ -162,7 +162,7 @@ export class RoleEditComponent implements OnInit {
         const values = this.permissions.map(
           p => {
             return {
-              value: role.permissions.some(r => r === p.id),
+              value: role.permissions.some(r => r.id === p.id),
               id: p.id
             };
           }

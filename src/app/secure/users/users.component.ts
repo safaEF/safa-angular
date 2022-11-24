@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.userService.all().subscribe(
       res => {
-        this.users = res  
+        this.users = res
       },
       error => {
          if (error.status == 401) {
@@ -37,6 +37,8 @@ export class UsersComponent implements OnInit {
               localStorage.setItem('access_token', res.access),
               this.userService.all().subscribe((res) => {
                 this.users = res
+                console.log('uers : ', this.users);
+
               },
               )
             },error=> {  this.router.navigate(['/login'])  })
@@ -50,7 +52,7 @@ export class UsersComponent implements OnInit {
       this.userService.delete(id).subscribe(
         () => {
           this.users = this.users.filter(u => u.id !== id),
-        
+
           error => {
              if (error.status == 401) {
                 this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {

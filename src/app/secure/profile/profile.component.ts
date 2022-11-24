@@ -27,9 +27,11 @@ export class ProfileComponent implements OnInit {
       first_name: user.first_name,
       last_name: user.last_name,
       email: user.email,
-      role: user.role,
-      permission: user.permission,
-      
+      role: user.groups,
+      groups_list: user.groups_list,
+      permissions: user.permissions,
+      permissions_list: user.permissions_list,
+
     });
 
     this.passwordForm = this.formBuilder.group({

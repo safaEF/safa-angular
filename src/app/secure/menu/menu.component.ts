@@ -12,8 +12,11 @@ export class MenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+
   }
+      canAccess(){
+        return Auth.canAccess()
+    }
 
 
 }
