@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
 
   }
       canAccess(){
-        return Auth.canAccess()
+        //return Auth.canAccess()
     }
 
 

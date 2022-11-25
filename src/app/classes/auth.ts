@@ -14,45 +14,58 @@ export class Auth {
 
 
   static set user(user:User){
-
+    
     this._user=user;
+
     this.userEmitter.emit(user)
   }
 
   static get user():User{
+    
     return this._user
+    
   }
 
- static canAccess(){
+ static canAccess(permissions){
+
+  let user_permissions = []
+  let route_permissions = []
+  let default_route_permission = true
+
+  this._user.permissions = this._user.groups_list[0].permissions_list
+  
+  this._user.permissions.forEach(element => {user_permissions.push(element.codename)});
+
+  if (permissions) {
+    Object.keys(permissions).forEach(key => {
+      route_permissions.push(permissions[key]) 
+
+  default_route_permission = route_permissions.every(element => {
+    
+
+    return user_permissions.includes(element);
+    
+  });
+ });
 
   if (!this._user) {
-    console.log("log from auth.ts 0: ");
-
     return false
-  } else {
-    console.log("log from auth.ts 1: ");
-
   }
-/*   this.permissionService.all().subscribe(data =>
+  return default_route_permission
+  }
 
-    data.filter(p => permission.indexOf(p) !== -1 ).length > 0 ) ;
-    console.log(); */
-/*
-    this.authService.user().subscribe((res) => {
-      console.log("res from user : ", res);
-      var group = res
-      console.log("group : ", group.id);
+    
 
 
-    })
- */
 
 
-  //  if(!Auth._user){
 
-  //    return false;
-  //  }
+      
 
+
+
+      return this._user.permissions.includes(permissions) ;
+    
 }
 
 }

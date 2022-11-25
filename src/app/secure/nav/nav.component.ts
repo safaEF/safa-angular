@@ -26,7 +26,6 @@ export class NavComponent implements OnInit {
       (user) => {
         // Auth.canAccess()
         Auth.userEmitter.subscribe(user)
-       console.log("data", user);
         this.user = user
       
      
@@ -54,7 +53,7 @@ export class NavComponent implements OnInit {
   // }
 
   canAccess(){
-    return Auth.canAccess()
+   // return Auth.canAccess()
 }
 
   logout() {
