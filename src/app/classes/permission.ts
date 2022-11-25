@@ -1,12 +1,10 @@
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from "@angular/router";
-import { Observable } from "rxjs";
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from "@angular/router";
 import { Auth } from "./auth";
 
-export class Permission implements CanActivate{
+export class Permission implements CanActivate {
 
-    canActivate(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-     return Auth.canAccess();
-      //return  Auth.user.groups_list.name == 'Admin'
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+     return Auth.canAccess(route.data)
 
     }
 }

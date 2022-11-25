@@ -21,10 +21,8 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Auth.userEmitter.subscribe((res))
      this.authService.user().subscribe(
       (user) => {
-        // Auth.canAccess()
         Auth.userEmitter.subscribe(user)
        console.log("data", user);
         this.user = user
@@ -45,16 +43,9 @@ export class NavComponent implements OnInit {
     )
   }
 
-  // logout(): void {
-  //   this.authService.logout().subscribe((res) => {
-  //     console.log("res logout", res);
-
-  //     localStorage.clear()
-  //   });
-  // }
 
   canAccess(){
-    return Auth.canAccess()
+    // return Auth.canAccess()
 }
 
   logout() {

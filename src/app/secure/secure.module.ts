@@ -21,7 +21,6 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 import { OrdersComponent } from './orders/orders.component';
 import {MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
-import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -55,7 +54,6 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         ReactiveFormsModule,
         MatSortModule,
         MatTableModule,
-        MatPaginatorModule
     ],
     
 })

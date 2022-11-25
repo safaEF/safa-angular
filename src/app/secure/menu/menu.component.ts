@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth } from 'src/app/classes/auth';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class MenuComponent implements OnInit {
 
   }
       canAccess(){
-        return Auth.canAccess()
+        //return Auth.canAccess()
     }
 
 
