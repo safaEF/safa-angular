@@ -24,12 +24,11 @@ export class NavComponent implements OnInit {
     // Auth.userEmitter.subscribe((res))
      this.authService.user().subscribe(
       (user) => {
-        Auth.canAccess()
+        // Auth.canAccess(Permissions)
         Auth.userEmitter.subscribe(user)
-       console.log("data", user);
         this.user = user
-      
-     
+
+
       },
       error => {
          if (error.status == 401) {
@@ -54,11 +53,11 @@ export class NavComponent implements OnInit {
   // }
 
   canAccess(){
-    return Auth.canAccess()
+   // return Auth.canAccess()
 }
 
   logout() {
     this.authService.logout();
   }
-  
+
 }

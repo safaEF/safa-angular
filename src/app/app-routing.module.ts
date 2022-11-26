@@ -37,8 +37,8 @@ const routes: Routes = [
       {
         path: 'products', 
         component: ProductsComponent,
-        // canActivate: [Permission],
-        // data: ['view_product', 'edit_product']
+        canActivate: [Permission],
+        data: ['changhhljhjlhe_product', ]
         
       },
       {path: 'products/create', component: ProductCreateComponent},

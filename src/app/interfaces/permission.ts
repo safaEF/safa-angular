@@ -3,5 +3,6 @@
 export interface Permission {
   id: number;
   name: string;
-  codename: string
+  codename: string;
+  content_type: number
 }

@@ -3,6 +3,7 @@ import {AuthService} from '../services/auth.service';
 import {User} from '../interfaces/user';
 import { Router } from '@angular/router';
 import { Auth } from '../classes/auth';
+import { Permission } from '../classes/permission';
 
 @Component({
   selector: 'app-secure',
@@ -11,7 +12,7 @@ import { Auth } from '../classes/auth';
 })
 
 export class SecureComponent implements OnInit {
-  public user: User;
+  user: User;
 
   constructor(
     private authService: AuthService,
@@ -23,10 +24,10 @@ export class SecureComponent implements OnInit {
   ngOnInit(): void {
     this.authService.user().subscribe(
       res => {
-        // Auth.canAccess()
         Auth.userEmitter.emit(res);
         this.user = res;
-        // console.log(res);
+        Auth.user = this.user
+        Auth.canAccess(Permission)
         
       },
        error => {
@@ -35,8 +36,6 @@ export class SecureComponent implements OnInit {
               localStorage.setItem('access_token', res.access),
               this.authService.user().subscribe((res) => {
                 this.user = res
-                console.log("user : ", this.user);
-
               })
             },error=> {  this.router.navigate(['/login'])  })
         }

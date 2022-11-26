@@ -31,7 +31,7 @@ export class RolesComponent implements OnInit {
      if (confirm('Are you sure you want to delete this record?')) {
        this.roleService.delete(id).subscribe(
          () => this.roles = this.roles.filter(r => r.id !== id),
-        
+
          error => {
             if (error.status == 401) {
                this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {

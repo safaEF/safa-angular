@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Auth} from '../../classes/auth';
-import {Permission} from '../../interfaces/permission';
-
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +11,6 @@ import {Permission} from '../../interfaces/permission';
 export class ProfileComponent implements OnInit {
   infoForm: FormGroup;
   passwordForm: FormGroup;
-  permissions: Permission[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,12 +23,7 @@ export class ProfileComponent implements OnInit {
     this.infoForm = this.formBuilder.group({
       first_name: user.first_name,
       last_name: user.last_name,
-      email: user.email,
-      role: user.groups,
-      groups_list: user.groups_list,
-      permissions: user.permissions,
-      permissions_list: user.permissions_list,
-
+      email: user.email
     });
 
     this.passwordForm = this.formBuilder.group({

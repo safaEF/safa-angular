@@ -41,8 +41,6 @@ export class UsersComponent implements OnInit {
               localStorage.setItem('access_token', res.access),
               this.userService.all().subscribe((res) => {
                 this.users = res
-                console.log('uers : ', this.users);
-
               },
               )
             },error=> {  this.router.navigate(['/login'])  })
