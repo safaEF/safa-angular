@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   lastName = '';
   username = '';
   email = '';
+  group = '';
   password1 = '';
   password2 = '';
   alert_success: boolean=false
@@ -35,10 +36,11 @@ export class RegisterComponent implements OnInit {
       email: this.email,
       password1: this.password1,
       password2: this.password2,
+      group: this.group,
       is_staff: 0,
       is_superuser: 0,
       groups: null,
-      
+
 
     })
 
@@ -52,6 +54,7 @@ export class RegisterComponent implements OnInit {
     // else do this
     (error) => {
       this.alert_danger=true
+
     });
 
   }

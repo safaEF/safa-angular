@@ -26,9 +26,14 @@
     <input [(ngModel)]="password1" name="password1" type="password" class="form-control mt-2" placeholder="Password" required>
 
     <input [(ngModel)]="password2" name="password2" type="password" class="form-control" placeholder="Password Confirm" required>
-  
-    
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>    
+
+      <select  [(ngModel)]="group" name="group" matNativeControl required class="form-control mb-2">
+        <option value="1">Admin</option>
+        <option value="2">Doctor</option>
+        <option value="3">Patient</option>
+      </select>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
 
   </form>
 </main>
