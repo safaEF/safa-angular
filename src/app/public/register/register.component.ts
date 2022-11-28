@@ -37,15 +37,9 @@ export class RegisterComponent implements OnInit {
       password1: this.password1,
       password2: this.password2,
       group: this.group,
-      is_staff: 0,
-      is_superuser: 0,
-      groups: null,
-
-
     })
 
     .subscribe(() =>  {
-      // if login success do this
       this.alert_success=true
       setTimeout(()=>this.router.navigate(['/login']),500);
 

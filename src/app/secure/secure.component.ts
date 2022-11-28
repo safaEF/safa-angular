@@ -24,7 +24,7 @@ export class SecureComponent implements OnInit {
   ngOnInit(): void {
     this.authService.user().subscribe(
       res => {
-        Auth.userEmitter.emit(res);
+        // Auth.userEmitter.emit(res);
         this.user = res;
         Auth.user = this.user
         Auth.canAccess(Permission)
