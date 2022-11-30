@@ -8,14 +8,15 @@ import { Auth } from 'src/app/classes/auth';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+
   constructor(
   ) {}
 
   ngOnInit(): void {
 
   }
-      canAccess(){
-        //return Auth.canAccess()
+      canAccess(permissions){
+        return Auth.canAccess(permissions)
     }
 
 

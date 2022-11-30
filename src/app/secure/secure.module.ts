@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import {NavComponent} from './nav/nav.component';
 import {MenuComponent} from './menu/menu.component';
 import {SecureComponent} from './secure.component';
@@ -50,6 +51,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     imports: [
 
         CommonModule,
+        BrowserModule,
         RouterModule,
         FormsModule,
         ReactiveFormsModule,

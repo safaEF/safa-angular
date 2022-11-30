@@ -35,7 +35,10 @@ export class SecureComponent implements OnInit {
             this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
               localStorage.setItem('access_token', res.access),
               this.authService.user().subscribe((res) => {
-                this.user = res
+                Auth.userEmitter.emit(res);
+                this.user = res;
+                Auth.user = this.user
+                Auth.canAccess(Permission)
               })
             },error=> {  this.router.navigate(['/login'])  })
         }

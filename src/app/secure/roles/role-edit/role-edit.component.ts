@@ -159,6 +159,8 @@ export class RoleEditComponent implements OnInit {
 
     this.roleService.get(this.id).subscribe(
       (role: Role) => {
+        console.log("rolesss: ", role.permissions_list);
+        
         const values = this.permissions.map(
           p => {
             return {

@@ -28,22 +28,34 @@ const routes: Routes = [
       {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent},
       {path: 'profile', component: ProfileComponent},
-      {path: 'users', component: UsersComponent},
+      {
+        path: 'users', component: UsersComponent,
+        canActivate: [Permission],
+        data: ['view_user'],
+    },
       {path: 'users/create', component: UserCreateComponent},
       {path: 'users/:id/edit', component: UserEditComponent},
-      {path: 'roles', component: RolesComponent},
+      
+      {path: 'roles', component: RolesComponent,
+      canActivate: [Permission],
+      data: ['view_group'],
+      },
+
       {path: 'roles/create', component: RoleCreateComponent},
       {path: 'roles/:id/edit', component: RoleEditComponent},
       {
         path: 'products', 
         component: ProductsComponent,
         canActivate: [Permission],
-        data: ['changhhljhjlhe_product', ]
+        data: ['view_product'],
         
       },
       {path: 'products/create', component: ProductCreateComponent},
       {path: 'products/:id/edit', component: ProductEditComponent},
-      {path: 'orders', component: OrdersComponent},
+      {path: 'orders', component: OrdersComponent,
+      canActivate: [Permission],
+      data: ['view_order'],  
+    },
     ]
   },
   {

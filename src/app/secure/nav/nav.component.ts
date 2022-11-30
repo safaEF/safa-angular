@@ -25,7 +25,7 @@ export class NavComponent implements OnInit {
      this.authService.user().subscribe(
       (user) => {
         // Auth.canAccess()
-        Auth.userEmitter.subscribe(user)
+        // Auth.userEmitter.subscribe(user)
         this.user = user
       
      

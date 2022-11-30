@@ -5,6 +5,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from '@angular/material/table';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { Auth } from 'src/app/classes/auth';
 
 
 
@@ -46,10 +47,14 @@ export class RolesComponent implements OnInit {
        );
      }
    }
+   canAccess(permissions){
+    return Auth.canAccess(permissions)
+}
 
   ngOnInit(): void {
     this.roleService.all().subscribe(
        res => {
+        console.log("role: ", res);
 
         this.roles = res;
          this.dataSource = new MatTableDataSource(this.roles);
