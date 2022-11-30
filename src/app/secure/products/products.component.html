@@ -1,5 +1,5 @@
-<div class="pt-3 pb-2 mb-3 border-bottom">
-  <a routerLink="/products/create" class="btn btn-sm btn-outline-secondary">Add</a>
+<div class="pt-3 pb-2 mb-3 border-bottom"  *ngIf="canAccess(['add_product'])" >
+  <a routerLink="/products/create" class="btn btn-sm btn-outline-secondary" >Add</a>
 </div>
 
 <div class="table-responsive">
@@ -20,11 +20,11 @@
       <td><img [src]="product.image" height="50"/></td>
       <td>{{product.price}}</td>
       <td>
-        <div class="btn-group mr-2">
+        <div class="btn-group mr-2" *ngIf="canAccess(['delete_product'])" >
           <a [routerLink]="['/products', product.id, 'edit']" class="btn btn-sm btn-outline-secondary">Edit</a>
-          <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary"
-             (click)="delete(product.id)"
-          >Delete</a>
+        </div>
+        <div class="pt-3 pb-2 mb-3 border-bottom"  *ngIf="canAccess(['delete_product'])" >
+          <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" (click)="delete(product.id)">Delete</a>
         </div>
       </td>
     </tr>

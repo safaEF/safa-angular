@@ -4,6 +4,7 @@ import {User} from '../../interfaces/user';
 import {Sort} from '@angular/material/sort';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { Auth } from 'src/app/classes/auth';
 
 
 
@@ -72,6 +73,9 @@ export class UsersComponent implements OnInit {
       );
     }
   }
+  canAccess(permissions){
+    return Auth.canAccess(permissions)
+}
 
   sortData(sort: Sort) {
     const data = this.users.slice();

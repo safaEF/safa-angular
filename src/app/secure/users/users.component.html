@@ -1,4 +1,4 @@
-<div class="pt-3 pb-2 mb-3 border-bottom">
+<div class="pt-3 pb-2 mb-3 border-bottom" *ngIf="canAccess(['add_user'])">
   <a routerLink="/users/create" class="btn btn-sm btn-outline-secondary">Add</a>
 
   <div class="search">
@@ -24,9 +24,11 @@
         <td>{{user.groups}}</td>
       
       <td>
-        <div class="btn-group mr-2">
-          <a [routerLink]="['/users', user.id, 'edit']" class="btn btn-sm btn-outline-secondary">Edit</a>
-          <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" (click)="delete(user.id)">Delete</a>
+        <div class="btn-group mt-2" *ngIf="canAccess(['change_user'])">
+          <a [routerLink]="['/roles', element.id, 'edit']" class="btn btn-sm btn-outline-secondary">Edit</a>
+        </div> 
+        <div class="pt-3 pb-2 mb-3 border-bottom" *ngIf="canAccess(['delete_user'])" >
+          <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" (click)="delete(element.id)">Delete</a>
         </div>
       </td>
     </tr>

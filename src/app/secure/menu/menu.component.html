@@ -4,16 +4,16 @@
       <li class="nav-item" >
         <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="canAccess(['view_user'])">
         <a routerLink="/users" routerLinkActive="active" class="nav-link">Users</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="canAccess(['view_group'])">
         <a routerLink="/roles" routerLinkActive="active" class="nav-link">Roles</a>
       </li>
-      <li class="nav-item"  >
+      <li class="nav-item" *ngIf="canAccess(['view_product'])"> 
         <a routerLink="/products"  routerLinkActive="active" class="nav-link">Products</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="canAccess(['view_order'])">
         <a routerLink="/orders" routerLinkActive="active" class="nav-link">Orders</a>
       </li>
     </ul>

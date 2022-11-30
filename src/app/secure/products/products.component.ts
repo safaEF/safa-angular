@@ -4,6 +4,7 @@ import {ProductService} from '../../services/product.service';
 import {Sort} from '@angular/material/sort';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { Auth } from 'src/app/classes/auth';
 
 @Component({
   selector: 'app-products',
@@ -30,6 +31,8 @@ export class ProductsComponent implements OnInit {
   load(page = 1): void {
     this.productService.all().subscribe(
       (res) => {
+        console.log("product", res);
+        
         this.products = res;
       },
       error => {
@@ -44,6 +47,9 @@ export class ProductsComponent implements OnInit {
         }
       }
       )}
+      canAccess(permissions){
+        return Auth.canAccess(permissions)
+    }
 
   delete(id: number): void {
     if (confirm('Are you sure you want to delete this record?')) {
