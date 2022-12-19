@@ -50,8 +50,6 @@ export class Auth {
     Object.keys(permissions).forEach(key => {
       route_permissions.push(permissions[key]) 
     });
-console.log("per:", permissions);
-console.log("user perm:", user_permissions);
 
 
 // et finalement cette fonction va retouner si tout les route_permissions sont inclus dans user_permissons ou non 
@@ -63,7 +61,6 @@ console.log("user perm:", user_permissions);
     test = route_permissions.every(element => {
       return user_permissions.includes(element);
     });
-    console.log("test", test);
     
 }
 

@@ -1,0 +1,32 @@
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>model</th>
+        <th>action</th>
+        <th>time</th>
+        <th>user</th>
+        <th>field updated</th>
+        <th>pre</th>
+        <th>post</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let historical of historicals">
+        <tr>
+          <td>{{historical.id}}</td>
+          <td>{{historical.model}}</td>
+          <td>{{historical.action}}</td>
+          <td>{{historical.time}}</td>
+          <td>{{historical.user}}</td>
+          <td>{{historical.field_updated}}</td>
+          <td>{{historical.pre}}</td>
+          <td>{{historical.post}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  

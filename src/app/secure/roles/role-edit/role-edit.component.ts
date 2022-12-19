@@ -39,7 +39,6 @@ export class RoleEditComponent implements OnInit {
         // console.log(permissions);
         
         this.permissions = permissions;
-        console.log(this.permissions);  ///permissions list
         
         this.permissions.forEach(p => {
           this.permissionArray.push(
@@ -56,11 +55,9 @@ export class RoleEditComponent implements OnInit {
 
     this.roleService.get(this.id).subscribe(
       (role: Role) => {
-        console.log("rolesss: ", role.permissions_list);
         
         const values = this.permissions.map(
           p => {
-            console.log("p",p === role.permissions[0]);
             return {
               value: role.permissions?.some(r => r.id === p.id),
               id: p.id

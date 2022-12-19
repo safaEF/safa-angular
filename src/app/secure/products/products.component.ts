@@ -31,7 +31,6 @@ export class ProductsComponent implements OnInit {
   load(page = 1): void {
     this.productService.all().subscribe(
       (res) => {
-        console.log("product", res);
         
         this.products = res;
       },

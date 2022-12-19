@@ -22,15 +22,20 @@
         <td>{{user.first_name}} {{user.last_name}}</td>
         <td>{{user.email}}</td>
         <td>{{user.groups}}</td>
-      
-      <td>
+        <td>
+          <div class="btn-group mt-2" *ngIf="canAccess(['change_user', 'delete_user'])">
+            <a [routerLink]="['/users', user.id, 'edit']" class="btn btn-sm btn-outline-secondary">Edit</a>
+            <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" (click)="delete(user.id)">Delete</a>
+          </div>
+        </td>
+      <!-- <td>
         <div class="btn-group mt-2" *ngIf="canAccess(['change_user'])">
           <a [routerLink]="['/roles', element.id, 'edit']" class="btn btn-sm btn-outline-secondary">Edit</a>
         </div> 
         <div class="pt-3 pb-2 mb-3 border-bottom" *ngIf="canAccess(['delete_user'])" >
           <a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" (click)="delete(element.id)">Delete</a>
         </div>
-      </td>
+      </td> -->
     </tr>
     </tbody>
   </table>

@@ -36,6 +36,9 @@ export abstract class RestService {
   update(id: number, data): Observable<any> {
     return this.http.put(`${this.endpoint}change/${id}/`, data , {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("access_token")}`)} );
   }
+  update2(id: number, data): Observable<any> {
+    return this.http.patch(`${this.endpoint}change/${id}/`, data , {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("access_token")}`)} );
+  }
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.endpoint}delete/${id}/` , {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("access_token")}`)});

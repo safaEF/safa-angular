@@ -23,6 +23,8 @@ import { OrdersComponent } from './orders/orders.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HistoricalsComponent } from './historicals/historicals.component';
+
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ProductCreateComponent,
     UploadComponent,
     ProductEditComponent,
-    OrdersComponent
+    OrdersComponent,
+    HistoricalsComponent,
+    
   ],
   exports: [
     SecureComponent

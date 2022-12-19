@@ -16,7 +16,9 @@ import { ProductsComponent} from './secure/products/products.component';
 import {ProductCreateComponent} from './secure/products/product-create/product-create.component';
 import {ProductEditComponent} from './secure/products/product-edit/product-edit.component';
 import {OrdersComponent} from './secure/orders/orders.component';
+import { HistoricalsComponent } from './secure/historicals/historicals.component';
 import { Permission } from './classes/permission';
+
 
 
 
@@ -56,6 +58,7 @@ const routes: Routes = [
       canActivate: [Permission],
       data: ['view_order'],  
     },
+    {path: 'historicals', component: HistoricalsComponent}
     ]
   },
   {

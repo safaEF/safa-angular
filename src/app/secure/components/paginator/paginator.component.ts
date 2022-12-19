@@ -17,7 +17,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   next(): void {
-    // console.log("page",this.page);
+    
     
     if (this.page == this.lastPage) {
       return;
