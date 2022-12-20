@@ -5,6 +5,7 @@ import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from '@angular/material/table';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -20,6 +21,7 @@ export class RolesComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'name', 'row'];
   dataSource!:MatTableDataSource<any>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -54,7 +56,8 @@ export class RolesComponent implements OnInit {
         this.roles = res;
          this.dataSource = new MatTableDataSource(this.roles);
          this.dataSource.sort = this.sort;
-       },
+         this.dataSource.paginator = this.paginator;
+               },
       error => {
          if (error.status == 401) {
             this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
@@ -70,5 +73,6 @@ export class RolesComponent implements OnInit {
   }
 
   @ViewChild(MatSort) sort: MatSort;
+  
 
 }
