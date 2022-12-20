@@ -58,9 +58,6 @@ export class ProductCreateComponent implements OnInit {
     
     this.imageService.upload(data).subscribe((res:any) => {
       this.id = res.data.id
-      
-
-      
         }
         
       );

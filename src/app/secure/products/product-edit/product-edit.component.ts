@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProductService} from '../../../services/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
+import { ImageService } from 'src/app/services/image.service';
 
 
 @Component({
@@ -13,13 +14,16 @@ import {AuthService} from '../../../services/auth.service';
 export class ProductEditComponent implements OnInit {
   form: FormGroup;
   id: number;
+  
 
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
     private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private imageService: ImageService,
+
   ) {
   }
 
@@ -27,7 +31,7 @@ export class ProductEditComponent implements OnInit {
     this.form = this.formBuilder.group({
       title: '',
       description: '',
-      image: '',
+      // image: '',
       price: ''
     });
 
@@ -39,7 +43,7 @@ export class ProductEditComponent implements OnInit {
   }
 
   submit(): void {
-    this.productService.update(this.id, this.form.getRawValue())
+    this.productService.update2(this.id, this.form.getRawValue())
       .subscribe(() => this.router.navigate(['/products']),
       
       error => {
@@ -52,4 +56,17 @@ export class ProductEditComponent implements OnInit {
         }
       });
   }
+    upload(files: FileList): void {
+      const file = files.item(0);
+
+      const data = new FormData();
+      data.append('image', file);
+      
+      this.imageService.upload(data).subscribe((res:any) => {
+        this.id = res.data.id
+          }
+          
+        );
+    }
+  
 }
