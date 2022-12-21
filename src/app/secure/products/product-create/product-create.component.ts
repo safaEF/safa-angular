@@ -4,6 +4,7 @@ import {ProductService} from '../../../services/product.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 import { ImageService } from 'src/app/services/image.service';
+import { title } from 'process';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class ProductCreateComponent implements OnInit {
   form: FormGroup;
-  id= null
+  image: ''
 
   
 
@@ -36,30 +37,27 @@ export class ProductCreateComponent implements OnInit {
 
 
   submit(): void {
-    this.productService.update2(this.id, this.form.getRawValue())
+    let formData = new FormData();
+    formData.set('title',  this.form.get('title').value),
+    formData.set('description',  this.form.get('description').value),
+    formData.set('price',  this.form.get('price').value),
+    formData.set('image', this.image)
+
+    this.productService.create(formData)
       .subscribe(() => this.router.navigate(['/products']),
       
       error => {
          if (error.status == 401) {
             this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
               localStorage.setItem('access_token', res.access),
-              this.productService.create(this.form.getRawValue()).subscribe(() => this.router.navigate(['/products']),
+              this.productService.create(formData).subscribe(() => this.router.navigate(['/products']),
               )
             },error=> {this.router.navigate(['/login'])})
         }
       });
   }
-  upload(files: FileList): void {
-    const file = files.item(0);
-
-    const data = new FormData();
-    data.append('image', file);
-    
-    this.imageService.upload(data).subscribe((res:any) => {
-      this.id = res.data.id
-        }
-        
-      );
+  upload(event: any) {
+    this.image = event.target.files[0]
   }
 }
   

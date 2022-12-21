@@ -8,6 +8,7 @@
     <tr>
       <th>id</th>
       <th mat-sort-header="title">title</th>
+      <th mat-sort-header="description">description</th>
       <th mat-sort-header="image">image</th>
       <th mat-sort-header="price">Price</th>
       <th>Action</th>
@@ -17,6 +18,7 @@
     <tr *ngFor="let product of products">
       <td>{{product.id}}</td>
       <td>{{product.title}}</td>
+      <td>{{product.description}}</td>
       <td><img [src]="product.image" height="50"/></td>
       <td>{{product.price}}</td>
       <td>

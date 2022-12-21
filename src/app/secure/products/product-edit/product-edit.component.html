@@ -10,7 +10,10 @@
   <div class="mb-3">
     <label>Image</label>
     <div class="input-group">
-      <input  class="form-control" type="file" (change)="upload($event.target.files)">
+      <input formControlName="image" disabled  class="form-control" type="text" >
+      <label class="btn btn-primary">
+        Upload <input type="file" hidden  (change)="upload($event)">
+      </label>
     </div>
   </div>
   <div class="mb-3">
