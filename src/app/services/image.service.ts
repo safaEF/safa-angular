@@ -11,5 +11,8 @@ export class ImageService {
 
   upload(data){
     return this.http.post(`${environment.api}/upload/`, data);
+}
+  upload2(data){
+    return this.http.patch(`${environment.api}/upload/`, data);
   }
 }

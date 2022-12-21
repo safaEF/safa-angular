@@ -13,7 +13,6 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class ProductCreateComponent implements OnInit {
   form: FormGroup;
-  @Output('fileUpload') fileUploadEmitter = new EventEmitter<string>();
   id= null
 
   

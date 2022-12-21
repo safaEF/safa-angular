@@ -57,12 +57,13 @@ export class ProductEditComponent implements OnInit {
       });
   }
     upload(files: FileList): void {
+      
       const file = files.item(0);
 
       const data = new FormData();
       data.append('image', file);
       
-      this.imageService.upload(data).subscribe((res:any) => {
+      this.imageService.upload2(data).subscribe((res:any) => {
         this.id = res.data.id
           }
           
