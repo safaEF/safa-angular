@@ -6,9 +6,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./paginator.component.css']
 })
 export class PaginatorComponent implements OnInit {
-  @Input() lastPage: number;
-  @Output() pageChanged = new EventEmitter<number>();
-  page = 1;
+  @Input('lastPage') lastPage: number;
+  @Output('pageChanged') pageChanged = new EventEmitter<number>();
+  currentPage = 1;
 
   constructor() {
   }
@@ -17,23 +17,21 @@ export class PaginatorComponent implements OnInit {
   }
 
   next(): void {
-    // console.log("page",this.page);
-    
-    if (this.page == this.lastPage) {
+    if (this.currentPage === this.lastPage) {
       return;
     }
 
-    this.page++;
-    this.pageChanged.emit(this.page);
+    this.currentPage++;
+    this.pageChanged.emit(this.currentPage);
   }
 
   prev(): void {
-    if (this.page ===1) {
+    if (this.currentPage === 1) {
       return;
     }
 
-    this.page--;
-    this.pageChanged.emit(this.page);
+    this.currentPage--;
+    this.pageChanged.emit(this.currentPage);
   }
 
 }

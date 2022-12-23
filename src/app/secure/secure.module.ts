@@ -19,9 +19,11 @@ import { ProductCreateComponent } from './products/product-create/product-create
 import { UploadComponent } from './components/upload/upload.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { OrdersComponent } from './orders/orders.component';
-import {MatSortModule} from "@angular/material/sort";
-import {MatTableModule} from "@angular/material/table";
-import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
+
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     ProductCreateComponent,
     UploadComponent,
     ProductEditComponent,
-    OrdersComponent
+    OrdersComponent,
+
+
   ],
   exports: [
     SecureComponent
@@ -55,8 +59,10 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         ReactiveFormsModule,
         MatSortModule,
         MatTableModule,
-        MatPaginatorModule
-    ]
+        PaginationModule.forRoot()
+
+    ],
+
 })
 export class SecureModule {
 }
