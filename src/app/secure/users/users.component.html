@@ -28,7 +28,13 @@
     </tr>
     </tbody>
   </table>
- <!-- <app-paginator [lastPage]="lastPage"  (pageChanged)="load($event)" >  </app-paginator> -->
+  <ngb-pagination [(page)]="page"
+                  [(pageSize)]="size"
+                  [collectionSize]="users.length"
+                  [maxSize]="2"
+                  [boundaryLinks]="true">
+
+  </ngb-pagination>
 </div>
 
 

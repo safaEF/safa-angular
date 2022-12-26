@@ -16,7 +16,8 @@ export class UsersComponent implements OnInit {
 
   users: User[] = [];
   id: number;
-  lastPage: number;
+  page = 1;
+  size = 1;
   sortedData: User[];
 
   constructor(
@@ -29,39 +30,41 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.userService.all().subscribe(
       res => {
-        this.users = res  
+        this.users = res;
+
       },
       error => {
-         if (error.status == 401) {
-            this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+         if (error.status === 401) {
+            this.authService.refresh({refresh : localStorage.getItem('refresh_token') }).subscribe((res) => {
               localStorage.setItem('access_token', res.access),
               this.userService.all().subscribe((res) => {
-                this.users = res
+                this.users = res;
               },
-              )
-            },error=> {  this.router.navigate(['/login'])  })
+              );
+            }, error => {  this.router.navigate(['/login']);  });
         }
       }
     );
   }
+
 
   delete(id: number): void {
     if (confirm('Are you sure you want to delete this record?')) {
       this.userService.delete(id).subscribe(
         () => {
           this.users = this.users.filter(u => u.id !== id),
-        
+
           error => {
              if (error.status == 401) {
-                this.authService.refresh({refresh :localStorage.getItem("refresh_token") }).subscribe((res) => {
+                this.authService.refresh({refresh : localStorage.getItem('refresh_token') }).subscribe((res) => {
                   localStorage.setItem('access_token', res.access),
                   this.userService.delete(this.id).subscribe(() => {
-                    this.users = this.users.filter(u => u.id !== id)
+                    this.users = this.users.filter(u => u.id !== id);
                   },
-                  )
-                },error=> {  this.router.navigate(['/login'])  })
+                  );
+                }, error => {  this.router.navigate(['/login']);  });
             }
-          }
+          };
         }
       );
     }
@@ -86,8 +89,14 @@ export class UsersComponent implements OnInit {
       }
     });
 
+  }
+  done(){
+    console.log(this.size)
+     console.log(this.page)
+
+  }
 }
-}
+
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);

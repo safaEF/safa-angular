@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
 })
 export class OrdersComponent implements OnInit {
   orders: Order[] = [];
-  lastPage: number;
+  // lastPage: number;
   selected: number;
   show = false;
 

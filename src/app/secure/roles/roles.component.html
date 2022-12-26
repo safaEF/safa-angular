@@ -31,24 +31,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
   </table>
-<!--  <mat-paginator #paginator-->
-<!--      [pageSize]="1" [showFirstLastButtons]="true" [pageSizeOptions]="[5, 10, 20]">-->
-<!--  </mat-paginator>-->
 
 </div>
-<pagination
-[totalItems]="roles.length"
-[itemsPerPage]="itemsPerPage"
-[boundaryLinks]="true"
-[directionLinks]="true"
-[maxSize]="5"
-[(ngModel)]="currentPage"
-name="currentPage"  (pageChanged)="pageChanged($event)"  (pageBoundsCorrection)="pageChanged($event)"></pagination>
-
-
-
-
-
-
-
-

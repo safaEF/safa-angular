@@ -21,7 +21,8 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 import { OrdersComponent } from './orders/orders.component';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
+
 
 
 
@@ -51,17 +52,17 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
   exports: [
     SecureComponent
   ],
-    imports: [
+  imports: [
 
-        CommonModule,
-        RouterModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatSortModule,
-        MatTableModule,
-        PaginationModule.forRoot()
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSortModule,
+    MatTableModule,
+    NgbPaginationModule,
 
-    ],
+  ],
 
 })
 export class SecureModule {

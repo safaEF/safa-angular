@@ -1,10 +1,5 @@
 <nav>
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="javascript:void(0)" (click)="prev()">Previous</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="javascript:void(0)" (click)="next()">Next</a>
-    </li>
-  </ul>
+<ngb-pagination [collectionSize]=data.length #numPagesExp1 [(page)]="currentPage" [maxSize]="5" [boundaryLinks]="true"></ngb-pagination>
+
+<pre><span class="float-md-left">Page: {{ currentPage }} / {{ numPagesExp1.pageCount }}</span></pre>
 </nav>

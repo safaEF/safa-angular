@@ -6,32 +6,20 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./paginator.component.css']
 })
 export class PaginatorComponent implements OnInit {
-  @Input('lastPage') lastPage: number;
-  @Output('pageChanged') pageChanged = new EventEmitter<number>();
   currentPage = 1;
+  data = [];
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.dataCollection();
   }
 
-  next(): void {
-    if (this.currentPage === this.lastPage) {
-      return;
+  dataCollection() {
+    for (let i = 0; i < 1000; i++) {
+      const item = 'Item' + i;
+      this.data.push(item);
     }
-
-    this.currentPage++;
-    this.pageChanged.emit(this.currentPage);
   }
-
-  prev(): void {
-    if (this.currentPage === 1) {
-      return;
-    }
-
-    this.currentPage--;
-    this.pageChanged.emit(this.currentPage);
-  }
-
 }

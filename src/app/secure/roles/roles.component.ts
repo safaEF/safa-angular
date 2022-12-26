@@ -5,7 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { PageChangedEvent } from 'ngx-bootstrap/pagination/public_api';
+
 
 
 
@@ -78,19 +78,5 @@ export class RolesComponent implements OnInit {
       }
      );
   }
-  pageChanged(event: PageChangedEvent): void {
-    const startItem = (event.page - 1) * event.itemsPerPage;
-    const endItem = event.page * event.itemsPerPage;
-    this.pagedRoles = this.roles.slice(startItem, endItem); //Retrieve roles for page
-    this.cd.detectChanges();
-  }
- // refresh(currentPage){
- //   this.roleService.all(currentPage).subscribe(
- //     (res: any) => {
- //       this.roleService = res.data;
- //       this.lastPage = res.meta.last_page;
- //       console.log('page', this.lastPage, this.roleService);
- //     }
- //   );
- // }
+
 }
