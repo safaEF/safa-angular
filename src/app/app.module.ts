@@ -10,11 +10,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    PagenotfoundComponent,
 
   ],
   imports: [

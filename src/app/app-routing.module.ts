@@ -18,6 +18,7 @@ import {ProductEditComponent} from './secure/products/product-edit/product-edit.
 import {OrdersComponent} from './secure/orders/orders.component';
 import { HistoricalsComponent } from './secure/historicals/historicals.component';
 import { Permission } from './classes/permission';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 
@@ -70,6 +71,8 @@ const routes: Routes = [
       {path: 'register', component: RegisterComponent},
     ]
   },
+  { path: '**', pathMatch: 'full',
+    component: PagenotfoundComponent }
 ];
 
 @NgModule({
