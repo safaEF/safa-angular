@@ -1,5 +1,6 @@
 <div class="pt-3 pb-2 mb-3 border-bottom"  *ngIf="canAccess(['add_product'])" >
   <a routerLink="/products/create" class="btn btn-sm btn-outline-secondary" >Add</a>
+  <button class="btn btn-sm btn-outline-primary" (click)="exportAsXLSX()"> Export xlsx </button>
 </div>
 
 <div class="table-responsive">
@@ -33,7 +34,3 @@
     </tbody>
   </table>
 </div>
-<!-- <app-paginator
-  [lastPage]="lastPage"
-  (pageChanged)="load($event)"
-></app-paginator> -->

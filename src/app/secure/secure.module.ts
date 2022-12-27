@@ -24,6 +24,8 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HistoricalsComponent } from './historicals/historicals.component';
+import { SpreadSheetsModule } from "@grapecity/spread-sheets-angular";
+import { ExcelService } from '../services/excel.service';
 
 
 
@@ -49,6 +51,7 @@ import { HistoricalsComponent } from './historicals/historicals.component';
     HistoricalsComponent,
     
   ],
+  providers: [ExcelService],
   exports: [
     SecureComponent
   ],
@@ -62,6 +65,7 @@ import { HistoricalsComponent } from './historicals/historicals.component';
         MatTableModule,
         MatPaginatorModule,
         Ng2SearchPipeModule,
+        SpreadSheetsModule,
     ],
     
 })
