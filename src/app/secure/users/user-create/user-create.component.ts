@@ -14,6 +14,7 @@ import {AuthService} from '../../../services/auth.service';
 export class UserCreateComponent implements OnInit {
   form: FormGroup;
   roles: Role[] = [];
+  groups: Role[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,13 +31,15 @@ export class UserCreateComponent implements OnInit {
       last_name: [''],
       username: [''],
       email: [''],
+      groups: [[]],
       role_id: '',
       password:['']
     }
     );
 
     this.roleService.all().subscribe(
-      roles => this.roles = roles
+      roles => this.roles = roles,
+      groups => this.groups = groups
 
     );
   }

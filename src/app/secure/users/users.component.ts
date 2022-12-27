@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {User} from '../../interfaces/user';
-import {Sort} from '@angular/material/sort';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -16,21 +16,24 @@ export class UsersComponent implements OnInit {
 
   users: User[] = [];
   id: number;
-  page = 1;
-  size = 1;
+  pageSize = 1;
+  page = 10;
+  previousPage: any;
+
   sortedData: User[];
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private userService: UserService) {
-    this.sortedData = this.users.slice();
+
   }
 
   ngOnInit(): void {
     this.userService.all().subscribe(
       res => {
-        this.users = res;
+        
+        this.users = res.data;
 
       },
       error => {
@@ -69,35 +72,20 @@ export class UsersComponent implements OnInit {
       );
     }
   }
-
-  sortData(sort: Sort) {
-    const data = this.users.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.loadData();
     }
-
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'id':
-          return compare(a.id, b.id, isAsc);
-        case 'email':
-          return compare(a.email, b.email, isAsc);
-        default:
-          return 0;
-      }
-    });
-
   }
-  done(){
-    console.log(this.size)
-     console.log(this.page)
-
+  loadData() {
+    this.userService.query({
+      page: this.page - 1,
+      size: this.pageSize,
+    }).subscribe(
+      (res: Response) => this.onSuccess(res.json(), res.headers),
+      (res: Response) => this.onError(res.json())
+      )
   }
 }
 
-
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}

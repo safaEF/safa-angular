@@ -23,16 +23,16 @@ export class RolesComponent implements OnInit {
               private cd: ChangeDetectorRef) {
   }
   roles: Role[] = [];
-  pagedRoles = [];
   id: number;
+
+ 
 
 
 
   displayedColumns: string[] = ['id', 'name', 'row'];
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatSort) sort: MatSort;
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
-  // dataSource;
+ 
 
 
  delete(id: number): void {
@@ -59,11 +59,11 @@ export class RolesComponent implements OnInit {
     this.roleService.all().subscribe(
        res => {
 
-        // this.refresh ();
         this.roles = res;
         this.dataSource = new MatTableDataSource(res.data);
-        // this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        console.log("groups", res);
+        
                },
       error => {
          if (error.status === 401) {
