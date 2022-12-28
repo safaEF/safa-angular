@@ -31,14 +31,14 @@
   <ngb-pagination class="d-flex justify-content-center" 
                   [(page)]="page"
                   [(pageSize)]="pageSize"
-                  [(pageChange)]="loadPage($event)"
                   [collectionSize]="users.length"
                   [maxSize]="4"
                   [rotate]="true"
 	                [ellipses]="false"
-                  [boundaryLinks]="true">
+                  [boundaryLinks]="true"
+                  (changePage)="onPageChange()"
+                  >
   </ngb-pagination>
-
 
   
 </div>

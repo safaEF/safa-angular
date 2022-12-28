@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit {
   id: number;
   pageSize = 1;
   page = 10;
-  previousPage: any;
+ 
 
   sortedData: User[];
 
@@ -34,6 +34,7 @@ export class UsersComponent implements OnInit {
       res => {
         
         this.users = res.data;
+        // this.getUsers();
 
       },
       error => {
@@ -72,20 +73,31 @@ export class UsersComponent implements OnInit {
       );
     }
   }
-  loadPage(page: number) {
-    if (page !== this.previousPage) {
-      this.previousPage = page;
-      this.loadData();
-    }
-  }
-  loadData() {
-    this.userService.query({
-      page: this.page - 1,
-      size: this.pageSize,
-    }).subscribe(
-      (res: Response) => this.onSuccess(res.json(), res.headers),
-      (res: Response) => this.onError(res.json())
+  getUsers() {
+      this.userService.getUsers(this.page, this.pageSize).subscribe(
+        data => this.users = data
+
       )
   }
+  onPageChange() {
+    this.getUsers();
+  }
+
+  // loadPage(page: number) {
+  //   if (page !== this.previousPage) {
+  //     this.previousPage = page;
+  //     this.loadData();
+  //   }
+  // }
+  // loadData() {
+  //   this.userService.query({
+  //     page: this.page - 1,
+  //     size: this.pageSize,
+  //   }).subscribe(
+  //     (res: Response) => this.onSuccess(res.json(), res.headers),
+  //     (res: Response) => this.onError(res.json())
+  //     )
+  // }
+
 }
 
