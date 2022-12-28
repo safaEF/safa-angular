@@ -29,7 +29,7 @@ const routes: Routes = [
     component: SecureComponent,
     children: [
       {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-      {path: 'dashboard', component: DashboardComponent},
+      {path: 'dashboard', component: DashboardComponent, data: { breadcrumb: 'dashboard' } },
       {path: 'profile', component: ProfileComponent},
       {
         path: 'users', component: UsersComponent,
@@ -46,15 +46,46 @@ const routes: Routes = [
 
       {path: 'roles/create', component: RoleCreateComponent},
       {path: 'roles/:id/edit', component: RoleEditComponent},
+
       {
         path: 'products', 
         component: ProductsComponent,
-        canActivate: [Permission],
-        data: ['view_product'],
+        canActivate: [Permission],  
+        data: {
+          title: 'product',
+          breadcrumb:[
+            {
+              label : 'product',
+              url: ''
+
+            }
+          ] ,
+        permission: 'view_product'
         
+      }} ,
+
+      {path: 'products/create', component: ProductCreateComponent, 
+      data: {
+        title: 'product',
+        breadcrumb:[
+          {
+            label : 'product',
+            url: ''
+
+          }
+        ] ,} 
       },
-      {path: 'products/create', component: ProductCreateComponent},
-      {path: 'products/:id/edit', component: ProductEditComponent},
+      {path: 'products/:id/edit', component: ProductEditComponent, 
+      data: {
+        title: 'product',
+        breadcrumb:[
+          {
+            label : 'product',
+            url: ''
+
+          }
+        ] ,} },
+
       {path: 'orders', component: OrdersComponent,
       canActivate: [Permission],
       data: ['view_order'],  

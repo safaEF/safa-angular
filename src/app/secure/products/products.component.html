@@ -1,7 +1,25 @@
+<!-- <breadcrumb #parent>
+  <ol class="breadcrumb">
+    <ng-template ngFor let-route [ngForof]="parent.breadcrumbs">
+      <li *ngIf="!route.terminal" class="breadcrumb-item">
+        <a href="" [routerLink]="[router.url]"> {{ route.displayName}} </a>
+      </li>
+      <li *ngIf="!route.terminal" class="breadcrumb-item active">
+        <a href="" [routerLink]="[router.url]"> {{ route.displayName}} </a>
+      </li>
+    </ng-template>
+  </ol>
+</breadcrumb> -->
+<breadcrumb #parent>
+  <span class="breadcrumb" *ngFor="let route of parent.breadcrumbs">
+      <a mat-button *ngIf="!route.terminal" href="" [routerLink]="[route.url]">{{ route.displayName }}</a>
+      <a mat-button *ngIf="route.terminal">{{ route.displayName }}</a>
+  </span>
+</breadcrumb>
+
 <div class="pt-3 pb-2 mb-3 border-bottom"  *ngIf="canAccess(['add_product'])" >
   <a routerLink="/products/create" class="btn btn-sm btn-outline-secondary" >Add</a>
 </div>
-
 <div class="table-responsive">
   <table class="table table-striped table-sm" matSort (matSortChange)="sortData($event)">
     <thead>
