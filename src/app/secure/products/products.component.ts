@@ -4,7 +4,10 @@ import {ProductService} from '../../services/product.service';
 import {Sort} from '@angular/material/sort';
 import {AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Auth } from 'src/app/classes/auth';
+import { NgDynamicBreadcrumbService } from 'ng-dynamic-breadcrumb';
+
 
 @Component({
   selector: 'app-products',
@@ -17,18 +20,62 @@ export class ProductsComponent implements OnInit {
  /*  lastPage: number; */
   sortedData: Product[];
 
+
   constructor(
     private authService: AuthService,
     private router: Router,
-    private productService: ProductService) {
+    private router2: ActivatedRoute,
+    private productService: ProductService,
+    private ngDynamicBreadcrumbService: NgDynamicBreadcrumbService,) {
     this.sortedData = this.products.slice();
   }
 
   ngOnInit(): void {
+
+
+    
     this.load();
+    // const breadcrumb =  {dynamicText: 1};
+    // this.ngDynamicBreadcrumbService.updateBreadcrumbLabels(breadcrumb);
     
   }
-
+  // updateBreadcrumb(): void {
+  //   const breadcrumbs  =  [
+  //     {
+  //       label : 'products',
+  //       url: ''
+  //     },
+  //     {
+  //       label : 'products',
+  //       url: '/products'
+  //     },
+  //     {
+  //       label : 'create',
+  //       url: ''
+  //     },
+  //     {
+  //       label : 'product/{{id}}',
+  //       url: '/products/:id/edit'
+  //     },
+  //     {
+  //       label : 'edit ',
+  //       url: ''
+  //     },
+  //     {
+  //       label: 'Update Breadcrumb',
+  //       url: ''
+  //     }
+  //   ];
+  //   this.ngDynamicBreadcrumbService.updateBreadcrumb(breadcrumbs);
+  // }
+  getPath() :void{
+    this.router2.queryParams
+    .subscribe(params => {
+      console.log("path : ",params); // { orderby: "price" }
+    }
+    )
+  }
+  
   load(page = 1): void {
     this.productService.all().subscribe(
       (res) => {

@@ -19,17 +19,22 @@ import {OrdersComponent} from './secure/orders/orders.component';
 import { HistoricalsComponent } from './secure/historicals/historicals.component';
 import { Permission } from './classes/permission';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ActivatedRoute } from '@angular/router';
+
+
+
 
 
 
 
 const routes: Routes = [
+  
   {
     path: '',
     component: SecureComponent,
     children: [
       {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-      {path: 'dashboard', component: DashboardComponent, data: { breadcrumb: 'dashboard' } },
+      {path: 'dashboard', component: DashboardComponent, },
       {path: 'profile', component: ProfileComponent},
       {
         path: 'users', component: UsersComponent,
@@ -52,10 +57,10 @@ const routes: Routes = [
         component: ProductsComponent,
         canActivate: [Permission],  
         data: {
-          title: 'product',
+          title: 'products',
           breadcrumb:[
             {
-              label : 'product',
+              label : 'products',
               url: ''
 
             }
@@ -64,27 +69,32 @@ const routes: Routes = [
         
       }} ,
 
-      {path: 'products/create', component: ProductCreateComponent, 
+      {path: 'products/create', 
+      component: ProductCreateComponent, 
       data: {
-        title: 'product',
+        title: 'product create',
         breadcrumb:[
           {
-            label : 'product',
+            label : 'products',
+            url: 'products'
+          },
+          {
+            label : 'create',
             url: ''
-
           }
         ] ,} 
       },
       {path: 'products/:id/edit', component: ProductEditComponent, 
       data: {
-        title: 'product',
         breadcrumb:[
-          {
-            label : 'product',
-            url: ''
-
-          }
-        ] ,} },
+            {
+              label : 'product',
+              url: 'products'
+            },   
+                      
+          ] ,
+        } 
+      },
 
       {path: 'orders', component: OrdersComponent,
       canActivate: [Permission],

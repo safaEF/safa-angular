@@ -24,6 +24,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HistoricalsComponent } from './historicals/historicals.component';
+import {NgDynamicBreadcrumbModule} from "ng-dynamic-breadcrumb";
 
 
 
@@ -62,6 +63,7 @@ import { HistoricalsComponent } from './historicals/historicals.component';
         MatTableModule,
         MatPaginatorModule,
         Ng2SearchPipeModule,
+        NgDynamicBreadcrumbModule,
     ],
     
 })

@@ -11,6 +11,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatTableModule} from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import {NgDynamicBreadcrumbModule} from "ng-dynamic-breadcrumb";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     NgbModule,
     MatTableModule,
     MatSelectModule,
+    NgDynamicBreadcrumbModule,
    
     
   ],

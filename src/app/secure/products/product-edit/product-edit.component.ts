@@ -38,8 +38,12 @@ export class ProductEditComponent implements OnInit {
 
     this.id = this.route.snapshot.params.id;
 
-    this.productService.get(this.id).subscribe(
-      product => this.form.patchValue(product),
+    this.productService.get(this.id).subscribe(() =>{
+      let url = window.location.pathname;
+        let edit_prod = url.substring(url.lastIndexOf('s')+1);
+        console.log("path : ", edit_prod);
+        console.log("");
+      product => this.form.patchValue(product)},
     );
   }
 
